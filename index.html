@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>
+春哥定价模型 V2.0 - DTC广告盈利模型
+</title>
+
+
+<style>
+
+body{
+
+font-family:
+Arial,
+"Microsoft YaHei",
+sans-serif;
+
+background:#f5f6f8;
+
+padding:30px;
+
+}
+
+
+.container{
+
+max-width:1000px;
+
+margin:auto;
+
+background:#fff;
+
+padding:30px;
+
+border-radius:15px;
+
+box-shadow:
+0 5px 25px rgba(0,0,0,.12);
+
+}
+
+
+
+h1{
+
+text-align:center;
+
+margin-bottom:5px;
+
+}
+
+
+
+.subtitle{
+
+text-align:center;
+
+color:#666;
+
+margin-bottom:10px;
+
+}
+
+
+
+.brand{
+
+text-align:center;
+
+font-size:14px;
+
+color:#000;
+
+margin-bottom:30px;
+
+}
+
+
+
+.section{
+
+margin-top:25px;
+
+padding:20px;
+
+background:#fafafa;
+
+border-radius:12px;
+
+border:1px solid #eee;
+
+}
+
+
+
+.section h2{
+
+margin-top:0;
+
+font-size:20px;
+
+}
+
+
+
+.grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(2,1fr);
+
+gap:15px;
+
+}
+
+
+
+label{
+
+font-size:14px;
+
+color:#555;
+
+}
+
+
+
+input,
+select{
+
+width:100%;
+
+padding:10px;
+
+margin-top:5px;
+
+border-radius:8px;
+
+border:1px solid #ccc;
+
+font-size:15px;
+
+}
+
+
+
+.result{
+
+background:#fff;
+
+padding:15px;
+
+margin-top:20px;
+
+border-radius:10px;
+
+}
+
+
+
+.row{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:10px 0;
+
+border-bottom:1px dashed #ddd;
+
+}
+
+
+
+.big{
+
+font-size:22px;
+
+font-weight:bold;
+
+}
+
+
+
+.good{
+
+color:#16a34a;
+
+font-weight:bold;
+
+}
+
+
+.warning{
+
+color:#d97706;
+
+font-weight:bold;
+
+}
+
+
+.bad{
+
+color:#dc2626;
+
+font-weight:bold;
+
+}
+
+
+.tip{
+
+background:#eef6ff;
+
+padding:15px;
+
+border-radius:10px;
+
+line-height:1.7;
+
+}
+
+
+
+@media(max-width:700px){
+
+.grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+<div class="container">
+
+
+<h1>
+春哥定价模型 V2.0
+</h1>
+
+
+<div class="subtitle">
+
+DTC品牌广告投放盈利模型
+
+</div>
+
+
+<div class="brand" style="font-weight: 700;">
+
+独立站春哥｜带教咨询微信号：ch022427
+
+</div>
+
+
+
+
+<!-- 第一模块 -->
+
+
+<div class="section">
+
+
+<h2>
+① 订单收入
+</h2>
+
+
+<div class="grid">
+
+
+<div>
+
+<label>
+产品售价 ($)
+</label>
+
+<input 
+id="price"
+value="89"
+oninput="calculate()">
+
+</div>
+
+
+
+<div>
+
+<label>
+客户支付运费 ($)
+</label>
+
+<input 
+id="shipping"
+value="0"
+oninput="calculate()">
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<!-- 第二模块 -->
+
+
+<div class="section">
+
+
+<h2>
+② 产品及履约成本
+</h2>
+
+
+
+<div class="grid">
+
+
+<div>
+
+<label>
+产品成本 ($)
+</label>
+
+
+<input
+id="productCost"
+value="20"
+oninput="calculate()">
+
+
+</div>
+
+
+
+<div>
+
+<label>
+包装成本 ($)
+</label>
+
+
+<input
+id="packageCost"
+value="3"
+oninput="calculate()">
+
+
+</div>
+
+
+
+<div>
+
+<label>
+国际物流 ($)
+</label>
+
+
+<input
+id="shippingCost"
+value="8"
+oninput="calculate()">
+
+
+</div>
+
+
+
+<div>
+
+<label>
+广告CPA ($)
+</label>
+
+
+<input
+id="cpa"
+value="35"
+oninput="calculate()">
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- 第三模块 -->
+
+
+<div class="section">
+
+
+<h2>
+③ 平台手续费
+</h2>
+
+
+<div class="grid">
+
+
+<div>
+
+<label>
+PayPal手续费 (%)
+</label>
+
+
+<input
+id="paypalRate"
+value="4.5"
+oninput="calculate()">
+
+
+</div>
+
+
+
+
+<div>
+
+<label>
+PayPal固定费用 ($)
+</label>
+
+
+<input
+id="paypalFixed"
+value="0.3"
+oninput="calculate()">
+
+
+</div>
+
+
+
+<div>
+
+<label>
+Shopify手续费 (%)
+</label>
+
+
+<input
+id="shopifyRate"
+value="2"
+oninput="calculate()">
+
+
+</div>
+
+
+
+</div>
+
+
+</div></div>
+
+
+<!-- 第四模块：计算结果 -->
+
+
+<div class="section">
+
+
+<h2>
+④ 广告盈利结果
+</h2>
+
+
+
+<div class="result">
+
+
+<div class="row">
+
+<span>
+订单总收入
+</span>
+
+<b id="revenue">
+--
+</b>
+
+</div>
+
+
+
+<div class="row">
+
+<span>
+产品履约成本
+</span>
+
+<b id="fulfillmentCost">
+--
+</b>
+
+</div>
+
+
+
+<div class="row">
+
+<span>
+PayPal手续费
+</span>
+
+<b id="paypalFee">
+--
+</b>
+
+</div>
+
+
+
+<div class="row">
+
+<span>
+Shopify手续费
+</span>
+
+<b id="shopifyFee">
+--
+</b>
+
+</div>
+
+
+
+<div class="row">
+
+<span>
+广告成本 CPA
+</span>
+
+<b id="adCost">
+--
+</b>
+
+</div>
+
+
+
+<hr>
+
+
+
+<div class="row big">
+
+<span>
+广告后净利润
+</span>
+
+<b id="netProfit">
+--
+</b>
+
+</div>
+
+
+
+<div class="row big">
+
+<span>
+广告后净利润率
+</span>
+
+<b id="netMargin">
+--
+</b>
+
+</div>
+
+
+
+<div class="row">
+
+<span>
+广告状态
+</span>
+
+<b id="status">
+--
+</b>
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<!-- 第五模块：目标利润CPA -->
+
+
+<div class="section">
+
+
+<h2>
+⑤ 最大可接受广告CPA
+</h2>
+
+
+
+<p>
+
+根据目标利润率，计算广告最多可以花多少钱。
+
+</p>
+
+
+
+<div class="grid">
+
+
+<div>
+
+<label>
+目标利润率
+</label>
+
+
+<select id="targetProfit"
+onchange="calculate()">
+
+
+
+<option value="0.20">
+
+盈利模式 20%
+
+</option>
+
+
+
+<option value="0.15" selected>
+
+平衡模式 15%
+
+</option>
+
+
+
+<option value="0.05">
+
+增长模式 5%
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="result">
+
+
+<div class="row">
+
+<span>
+目标利润金额
+</span>
+
+
+<b id="targetProfitMoney">
+--
+</b>
+
+
+</div>
+
+
+
+
+<div class="row big">
+
+<span>
+最大可接受CPA
+</span>
+
+
+<b id="maxCPA">
+--
+</b>
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- 第六模块：长期辅助判断 -->
+
+
+<div class="section">
+
+
+<h2>
+⑥ 长期客户价值辅助模型
+</h2>
+
+
+
+<p>
+
+用于判断是否可以接受短期低利润获客。
+
+</p>
+
+
+
+<div class="grid">
+
+
+<div>
+
+<label>
+平均订单金额 ($)
+</label>
+
+
+<input
+id="averageOrder"
+value="89"
+oninput="calculate()">
+
+
+</div>
+
+
+
+<div>
+
+<label>
+预计年度购买次数
+</label>
+
+
+<input
+id="yearOrders"
+value="2"
+oninput="calculate()">
+
+
+</div>
+
+
+
+<div>
+
+<label>
+预计利润率 (%)
+</label>
+
+
+<input
+id="futureMargin"
+value="20"
+oninput="calculate()">
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="result">
+
+
+<div class="row">
+
+<span>
+年度客户贡献利润
+</span>
+
+
+<b id="customerValue">
+--
+</b>
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- 说明 -->
+
+
+<div class="section">
+
+
+<h2>
+⑦ 使用说明
+</h2>
+
+
+
+<div class="tip">
+
+
+<p>
+<strong>核心指标：</strong>
+广告后净利润率。
+</p>
+
+
+<p>
+
+≥20%：
+优秀，可以扩大广告预算。
+
+</p>
+
+
+<p>
+
+15%-20%：
+健康，适合稳定投放。
+
+</p>
+
+
+<p>
+
+5%-15%：
+测试阶段，需要优化CPA、转化率和客单价。
+
+</p>
+
+
+<p>
+
+≤0：
+广告模型需要调整。
+
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+<div style="
+text-align:center;
+margin-top:30px;
+color:#000;
+font-size:13px;
+font-weight:700;
+">
+
+
+© 2026 独立站春哥（亿级操盘手）｜带教咨询微信：ch022427
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+<script>
+
+function money(num){
+
+    return "$" + Number(num).toFixed(2);
+
+}
+
+
+
+function calculate(){
+
+
+    // ==========================
+    // 基础输入
+    // ==========================
+
+
+    let price =
+    Number(document.getElementById("price").value) || 0;
+
+
+    let shipping =
+    Number(document.getElementById("shipping").value) || 0;
+
+
+    let productCost =
+    Number(document.getElementById("productCost").value) || 0;
+
+
+    let packageCost =
+    Number(document.getElementById("packageCost").value) || 0;
+
+
+    let shippingCost =
+    Number(document.getElementById("shippingCost").value) || 0;
+
+
+    let cpa =
+    Number(document.getElementById("cpa").value) || 0;
+
+
+
+
+    // ==========================
+    // 收入
+    // ==========================
+
+
+    let revenue =
+    price + shipping;
+
+
+
+
+    // ==========================
+    // 履约成本
+    // ==========================
+
+
+    let fulfillmentCost =
+    productCost
+    +
+    packageCost
+    +
+    shippingCost;
+
+
+
+
+    // ==========================
+    // 手续费
+    // ==========================
+
+
+    let paypalRate =
+    Number(document.getElementById("paypalRate").value) / 100;
+
+
+    let paypalFixed =
+    Number(document.getElementById("paypalFixed").value);
+
+
+    let paypalFee =
+    revenue * paypalRate
+    +
+    paypalFixed;
+
+
+
+    let shopifyRate =
+    Number(document.getElementById("shopifyRate").value) / 100;
+
+
+    let shopifyFee =
+    revenue * shopifyRate;
+
+
+
+
+    // ==========================
+    // 广告后净利润
+    // ==========================
+
+
+    let netProfit =
+    revenue
+    -
+    fulfillmentCost
+    -
+    paypalFee
+    -
+    shopifyFee
+    -
+    cpa;
+
+
+
+
+    let netMargin =
+    netProfit / revenue * 100;
+
+
+
+
+    // ==========================
+    // 输出结果
+    // ==========================
+
+
+    document.getElementById("revenue").innerHTML =
+    money(revenue);
+
+
+    document.getElementById("fulfillmentCost").innerHTML =
+    money(fulfillmentCost);
+
+
+    document.getElementById("paypalFee").innerHTML =
+    money(paypalFee);
+
+
+    document.getElementById("shopifyFee").innerHTML =
+    money(shopifyFee);
+
+
+    document.getElementById("adCost").innerHTML =
+    money(cpa);
+
+
+
+    document.getElementById("netProfit").innerHTML =
+    money(netProfit);
+
+
+
+    document.getElementById("netMargin").innerHTML =
+    netMargin.toFixed(2) + "%";
+
+
+
+
+
+    // ==========================
+    // 广告状态判断
+    // ==========================
+
+
+    let status =
+    document.getElementById("status");
+
+
+
+    if(netMargin >= 20){
+
+
+        status.innerHTML =
+        "🟢 优秀：可以扩大广告预算";
+
+
+        status.className="good";
+
+
+    }
+
+    else if(netMargin >= 15){
+
+
+        status.innerHTML =
+        "🟢 健康：适合稳定投放";
+
+
+        status.className="good";
+
+
+    }
+
+
+    else if(netMargin >= 5){
+
+
+        status.innerHTML =
+        "🟡 测试阶段：优化CPA和转化率";
+
+
+        status.className="warning";
+
+
+    }
+
+
+    else if(netMargin >=0){
+
+
+        status.innerHTML =
+        "🟠 临界状态：谨慎投放";
+
+
+        status.className="warning";
+
+
+    }
+
+
+    else{
+
+
+        status.innerHTML =
+        "🔴 亏损：调整产品或广告策略";
+
+
+        status.className="bad";
+
+
+    }
+
+
+
+
+
+    // ==========================
+    // 最大CPA计算
+    // ==========================
+
+
+    let targetProfitRate =
+    Number(document.getElementById("targetProfit").value);
+
+
+
+    let targetProfitMoney =
+    revenue * targetProfitRate;
+
+
+
+    let maxCPA =
+    revenue
+    -
+    fulfillmentCost
+    -
+    paypalFee
+    -
+    shopifyFee
+    -
+    targetProfitMoney;
+
+
+
+
+    document.getElementById("targetProfitMoney").innerHTML =
+    money(targetProfitMoney);
+
+
+
+    document.getElementById("maxCPA").innerHTML =
+    money(maxCPA);
+
+
+
+
+
+
+    // ==========================
+    // 年度客户价值辅助
+    // ==========================
+
+
+    let averageOrder =
+    Number(document.getElementById("averageOrder").value) || 0;
+
+
+
+    let yearOrders =
+    Number(document.getElementById("yearOrders").value) || 0;
+
+
+
+    let futureMargin =
+    Number(document.getElementById("futureMargin").value) / 100;
+
+
+
+    let customerValue =
+    averageOrder
+    *
+    yearOrders
+    *
+    futureMargin;
+
+
+
+    document.getElementById("customerValue").innerHTML =
+    money(customerValue);
+
+
+
+}
+
+
+
+calculate();
+
+</script>
+
+
+</html>
